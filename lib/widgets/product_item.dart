@@ -34,7 +34,7 @@ ProductItem(this.id,this.imageUrl,this.cost,this.name);
       footer: GridTileBar(
         backgroundColor: Colors.white,
         leading: IconButton(icon: Icon(Icons.favorite_border,color: Colors.black,),onPressed: (){},),
-        title: Text(cost.toString(),textAlign: TextAlign.center,style: TextStyle(color: Colors.black),),
+        title: Text('\$'+cost.toString(),textAlign: TextAlign.center,style: TextStyle(color: Colors.black),),
         trailing: IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black,),onPressed: (){},),
         
       ),

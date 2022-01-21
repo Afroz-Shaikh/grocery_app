@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) =>Products(),
       child: MaterialApp(
-        home: HomeScreen(),
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(
+
+        ),
         routes: {
           ProductDetail.routeName: (context) => ProductDetail(),
     
