@@ -1,4 +1,8 @@
-class Product{
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart';
+
+class Product with ChangeNotifier{
   final String id;
   final String name;
   final double cost;
@@ -18,5 +22,11 @@ class Product{
   required this.imageUrl,
    this.isFavorite=false,
   });
+
+void toggleFavoriteStatus(){
+  isFavorite = !isFavorite;
+  notifyListeners();
+}
+
 
 }

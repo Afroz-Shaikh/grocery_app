@@ -63,10 +63,29 @@ class Products with ChangeNotifier{
 
   ];
 
+  var _showPremiumOnly = false;
+
   List<Product> get items {
+    if(_showPremiumOnly){
+       return _items.where((prodItem) => prodItem.category=='Premium').toList();
+    }
+
    return [..._items];
   }
 
+ List<Product> get PremiumItems {
+    return _items.where((prodItem) => prodItem.category=='Premium').toList();
+  }
+
+void showPremiumOnly(){
+  _showPremiumOnly =true;
+  notifyListeners();
+}
+
+void showAll(){
+_showPremiumOnly=false;
+notifyListeners();
+}
 
   void addProduct() {
     // _items.add(value);

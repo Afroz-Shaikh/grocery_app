@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/views/productview.dart';
+import 'package:flutter/cupertino.dart';
+import '../Providers/products.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+enum FilterOptions{
+  Premium,
+  All,
+}
+
+class HomeScreen extends StatefulWidget {
+  
   const HomeScreen({ Key? key }) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool _state=true;
+    
+  @override
   Widget build(BuildContext context) {
+    final productsContainer = Provider.of<Products>(context);
+    bool state=true;
+    
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -41,7 +60,38 @@ class HomeScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            //Container(),
+            Container(
+              height: 50,
+              child: Row(
+                children: [
+                  PopupMenuButton(
+                    onSelected: (FilterOptions selectedValue){
+                      if(selectedValue == FilterOptions.Premium){
+                        //
+                        productsContainer.showPremiumOnly();
+                        
+
+                      }
+                      else{
+                        //
+                        productsContainer.showAll();
+
+                      }
+
+
+                    },
+                    icon: Icon(Icons.filter),
+                    itemBuilder: (_)=> [
+                      PopupMenuItem(child: Text('Only Premium'),value: FilterOptions.Premium,),
+                      PopupMenuItem(child: Text('Show All'),value: FilterOptions.All,)
+
+                    ],
+                  ),
+                  // ToggleButtons(children: children, isSelected: isSelected)
+                  // Switch(value: value, onChanged: (value)=>setState(()=>this.value))
+                ],
+              ),
+            ),
             
             ProductView(),
           ],
@@ -51,3 +101,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
